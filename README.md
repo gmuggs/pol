@@ -1,2 +1,11 @@
-# pol
-Patterns-of-Life simulation
+# Patterns-of-Life Simulation
+
+Location-based social networks (LBSNs) have been studied extensively in recent years. However, utilizing real-world LBSN data sets in such studies yields several weaknesses: sparse and small data sets, privacy concerns, and a lack of authoritative ground-truth. To overcome these weaknesses, we leverage a large-scale geospatial simulation to create a framework to simulate human behavior and to create synthetic but realistic LBSN data based on human patterns of life. Such data not only captures the location of users over time but also their interactions via social networks. Patterns of life are simulated by giving agents (i.e., people) an array of ``needs'' that they aim to satisfy, e.g., agents go home when they are tired, to restaurants when they are hungry, to work to cover their financial needs, and to recreational sites to meet friends and satisfy their social needs. While existing real-world LBSN data sets are trivially small, the proposed framework provides a source for massive LBSN benchmark data that closely mimics the real-world. As such it allows us to capture 100% of the (simulated) population without any data uncertainty, privacy-related concerns, or incompleteness. It allows researchers to see the (simulated) world through the lens of an omniscient entity having perfect data. Our framework is made available to the community. In addition, we provide a series of simulated benchmark LBSN data sets using different real-world urban environments obtained from OpenStreetMap. The simulation software and data sets which comprise gigabytes of spatio-temporal and temporal social network data are made available to the research community.
+
+
+# Location-Based Social Network Data Generation Framework
+
+The framework utilizes and extends the MASON (Multi-Agent Simulation of Neighborhoods) open-source simulation toolkit and its GIS extension, GeoMASON. MASON is a fast discrete-event multi-agent simulation library core developed in Java. It is designed to be the foundation for sizeable custom-purpose Java simulations by providing the basic run-time infrastructure for simulation development.
+
+
+NOTE: For the sake of security reasons, code has been being under review by stakeholders. A pre-release is available at the release tab in this project repository.
