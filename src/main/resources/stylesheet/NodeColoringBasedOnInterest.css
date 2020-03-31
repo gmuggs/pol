@@ -1,0 +1,65 @@
+node {
+	fill-color: black;
+	size: 4px;
+}
+
+node.marked {
+	fill-color: #2177B1;
+	size: 5px;
+}
+
+node.A {
+	fill-color: #FE802A;
+	size: 5px;
+}
+
+node.B {
+	fill-color: #30A039;
+	size: 5px;
+}
+
+node.C {
+	fill-color: #D52A2D;
+	size: 5px;
+}
+
+node.D {
+	fill-color: #9367BA;
+	size: 5px;
+}
+
+node.E {
+	fill-color: #8C564C;
+	size: 5px;
+}
+
+node.F {
+	fill-color: #E278C0;
+	size: 5px;
+}
+
+node.G {
+	fill-color: #7F7F7F;
+	size: 5px;
+}
+
+node.H {
+	fill-color: #BCBD3B;
+	size: 5px;
+}
+
+node.I {
+	fill-color: #1FBECD;
+	size: 5px;
+}
+
+node.J {
+	fill-color: #A2A7AD;
+	size: 5px;
+}
+
+edge {
+	shape: line;
+	fill-color: #dddddd;
+	arrow-size: 3px, 1px;
+}
