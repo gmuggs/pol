@@ -49,6 +49,7 @@ public class WorldParameters extends AnnotatedPropertied {
 	public static final int NUM_OF_AGENTS = 250;
 	public static final int NUM_OF_AGENT_INTERESTS = 10;
 	public static final double BASE_RENT_RATE = 500;
+	public static final String DEFAULT_MAPS = "campus_data";
 
 	// MODEL
 	public static final int BASE_AGENT_AGE = 18;
@@ -185,6 +186,7 @@ public class WorldParameters extends AnnotatedPropertied {
 	public int minimumSiteVisitLengthInMinutes;
 	public int maximumSiteVisitLengthInMinutes;
 	public double baseRentRate;
+	public String maps;
 
 	// Network parameters
 	@EditableProperty(group = "Behavior", description = "Focal closure probability", lower = "0.0", upper = "1.0", readOnly = false)
@@ -380,6 +382,7 @@ public class WorldParameters extends AnnotatedPropertied {
 		additionalAgentAgeMin = ADDITIONAL_AGENT_AGE_MIN;
 		additionalAgentAgeMax = ADDITIONAL_AGENT_AGE_MAX;
 		baseRentRate = BASE_RENT_RATE;
+		maps = DEFAULT_MAPS;
 
 		maximumAllowedRentalSalaryRatio = MAXIMUM_ALLOWED_RENTAL_SALARY_RATIO;
 		maxDaysToBeHomeless = MAX_DAYS_TO_BE_HOMELESS;

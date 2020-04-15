@@ -90,6 +90,23 @@ The following command was a complete example that uses all configurations.
 java -Dlog4j2.configurationFactory=edu.gmu.mason.vanilla.log.CustomConfigurationFactory -Dlog.rootDirectory=logs -Dsimulation.test=all -jar vanilla-0.1-jar-with-dependencies.jar -configuration parameters.properties -until 8640
 ```
 
+
+# Load maps
+
+Default maps are located in `src/main/resource/campus_data/`. The current version of this project includes four maps (i.e., `gmu_campus`, `french_quarter`, `virtual_city(large)`, `virtual_city(small)`) complaint with simulation, which requires the following three ESRI shapefiles: 
+- `buildings`: They represent 2D polygonal footprints of buildings. It should include `neighbor` (neighborhood id: Integer), `id` (building id: Integer), `function` (building type: Integer), and `degree` (attractiveness of building: Double) fields.
+- `buildingUnits`: They are a unit in a building such as a restaurant and an apartment unit. They are a point object.
+- `walkways`: It is a spatial network consisting of roads represented as a polyline. The network should be a connected graph.
+
+Note that multi geometry type such as multipoint and multipolygons are not supported. In order to load different maps, you have two options.
+- Copy maps into `src/main/resource/campus_data/`. 
+- Set the location of maps in the resources directory with parameter `maps`. For instance, you can load the GMU campus maps by setting `maps` configuration as follows.
+
+```
+maps = gmu_campus
+```
+
+
 # Resources
 
 Joon-Seok Kim, Hyunjee Jin, Hamdi Kavak, Ovi Chris Rouly, Andrew Crooks, Dieter Pfoser, Carola Wenk and Andreas Züfle, <i>Location-Based Social Network Data Generation Based on Patterns of Life</i>, IEEE International Conference on Mobile Data Management (MDM 2020) (Accepted)

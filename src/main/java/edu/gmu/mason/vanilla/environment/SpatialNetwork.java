@@ -157,30 +157,30 @@ public class SpatialNetwork implements java.io.Serializable {
 
 			extractResourcesFromJar(codeBase, path);
 			// walkway map
-			String walkwayPath = path + walkwayShapefile;
+			String walkwayPath = path + "/" + walkwayShapefile;
 			URL geometry = Paths.get(walkwayPath).toUri().toURL();
 			System.out.println(geometry);
 			ShapeFileImporter.read(geometry, walkwayLayer);
 
-			String buildingPath = path + buildingShapefile;
+			String buildingPath = path + "/" + buildingShapefile;
 			geometry = Paths.get(buildingPath).toUri().toURL();
 			System.out.println(geometry);
 			ShapeFileImporter.read(geometry, buildingLayer);
 
-			String buildingUnitPath = path + buildingUnitShapefile;
+			String buildingUnitPath = path + "/" + buildingUnitShapefile;
 			geometry = Paths.get(buildingUnitPath).toUri().toURL();
 			System.out.println(geometry);
 			ShapeFileImporter.read(geometry, buildingUnitLayer);
 
 		} else {
 			// walkway map
-			URL geometry = WorldModel.class.getResource(walkwayShapefile);
+			URL geometry = WorldModel.class.getResource("/" + walkwayShapefile);
 			ShapeFileImporter.read(geometry, walkwayLayer);
 
-			geometry = WorldModel.class.getResource(buildingShapefile);
+			geometry = WorldModel.class.getResource("/" + buildingShapefile);
 			ShapeFileImporter.read(geometry, buildingLayer);
 
-			geometry = WorldModel.class.getResource(buildingUnitShapefile);
+			geometry = WorldModel.class.getResource("/" + buildingUnitShapefile);
 			ShapeFileImporter.read(geometry, buildingUnitLayer);
 
 		}
