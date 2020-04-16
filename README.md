@@ -12,17 +12,17 @@ The framework utilizes and extends the MASON (Multi-Agent Simulation of Neighbor
 
 
 The structure of the project and its summary are described as follows:
-- `src/edu/gmu/mason/vanilla`: Core models including agents and needs
-- `src/edu/gmu/mason/vanilla/db`: Classes related to schema
-- `src/edu/gmu/mason/vanilla/environment`: Environments such as a building and a building unit
-- `src/edu/gmu/mason/vanilla/gui`: Utilities related to GUI
-- `src/edu/gmu/mason/vanilla/log`: Classes related to the logging system used to generate data 
-- `src/edu/gmu/mason/vanilla/utils`: Other utilities
+- [src/edu/gmu/mason/vanilla](src/edu/gmu/mason/vanilla): Core models including agents and needs
+- [src/edu/gmu/mason/vanilla/db](src/edu/gmu/mason/vanilla/db): Classes related to schema
+- [src/edu/gmu/mason/vanilla/environment](src/edu/gmu/mason/vanilla/environment): Environments such as a building and a building unit
+- [src/edu/gmu/mason/vanilla/gui](src/edu/gmu/mason/vanilla/gui): Utilities related to GUI
+- [src/edu/gmu/mason/vanilla/log](src/edu/gmu/mason/vanilla/log): Classes related to the logging system used to generate data
+- [src/edu/gmu/mason/vanilla/utils](src/edu/gmu/mason/vanilla/utils): Other utilities
 
 
 ## How to compile and build a jar file
 
-The simplest way to compile the code is to import `pom.xml` as a Maven project. All dependent libraries are described in `pom.xml`. Most of library can be found in Maven Central Repository. However, there are four jar files you must set up manually before building your Maven project. The four jar files are located in `src/main/resources/libs/`. The following are commands that you can use to build local Maven repositories, assuming that Maven is installed in your computer.
+The simplest way to compile the code is to import `pom.xml` as a Maven project. All dependent libraries are described in `pom.xml`. Most of library can be found in Maven Central Repository. However, there are four jar files you must set up manually before building your Maven project. The four jar files are located in [src/main/resources/libs/](src/main/resources/libs/). The following are commands that you can use to build local Maven repositories, assuming that Maven is installed in your computer.
 
 
 ```
@@ -35,15 +35,17 @@ mvn install:install-file -Dfile=src/main/resources/libs/mason-tools-1.0.jar -Dgr
 You can create a single (executable) jar file by using the following command.
 
 ```
-mvn org.apache.maven.plugins:maven-resources-plugin:2.6:resources org.apache.maven.plugins:maven-compiler-plugin:3.1:compile org.apache.maven.plugins:maven-assembly-plugin:3.1.0:single
+mvn org.apache.maven.plugins:maven-resources-plugin:2.6:resources \
+org.apache.maven.plugins:maven-compiler-plugin:3.1:compile \
+org.apache.maven.plugins:maven-assembly-plugin:3.1.0:single
 ```
 
-It will generate `vanilla-0.1-jar-with-dependencies.jar` in directory `target`. It will include all dependencies.
+It will generate `vanilla-0.1-jar-with-dependencies.jar` in directory `target`. It includes all dependencies.
 
 
-# How to run a simulation
+## How to run a simulation
 
-There are two ways to run a simulation: (1) GUI and (2) headless. For the GUI version, run the main method in `src/edu/gmu/mason/vanilla/WorldModelUI.java`. For the headless version, invoke the main method in `src/edu/gmu/mason/vanilla/WorldModel.java` with appropriate arguments. 
+There are two ways to run a simulation: (1) GUI and (2) headless. For the GUI version, run the main method in `src/edu/gmu/mason/vanilla/WorldModelUI.java`. For the headless version, invoke the main method in `src/edu/gmu/mason/vanilla/WorldModel.java` with appropriate arguments. You can download [vanilla-0.1-jar-with-dependencies.jar](https://github.com/gmuggs/pol/releases).
 
 
 ```
@@ -87,21 +89,23 @@ java [Log4j2-configuration] [log-directory] [log-types] -jar vanilla-0.1-jar-wit
 The following command was a complete example that uses all configurations.
 
 ```
-java -Dlog4j2.configurationFactory=edu.gmu.mason.vanilla.log.CustomConfigurationFactory -Dlog.rootDirectory=logs -Dsimulation.test=all -jar vanilla-0.1-jar-with-dependencies.jar -configuration parameters.properties -until 8640
+java -Dlog4j2.configurationFactory=edu.gmu.mason.vanilla.log.CustomConfigurationFactory \
+-Dlog.rootDirectory=logs -Dsimulation.test=all -jar vanilla-0.1-jar-with-dependencies.jar \
+-configuration parameters.properties -until 8640
 ```
 
 Examples of configurations are found in [examples/](examples/).
 
 
-# Load maps
+## Load maps
 
-Default maps are located in `src/main/resource/campus_data/`. The current version of this project includes four maps (i.e., `gmu_campus`, `french_quarter`, `virtual_city_large`, `virtual_city_small`) complaint with simulation, which requires the following three ESRI shapefiles: 
+Default maps are located in [src/main/resource/campus_data/](src/main/resource/campus_data/). The current version of this project includes four maps (i.e., [gmu_campus](src/main/resource/gmu_campus), [french_quarter](src/main/resource/french_quarter), [virtual_city_large](src/main/resource/virtual_city_large), [virtual_city_small](src/main/resource/virtual_city_small)) complaint with simulation, which requires the following three ESRI shapefiles:
 - `buildings`: They represent 2D polygonal footprints of buildings. It should include `neighbor` (neighborhood id: Integer), `id` (building id: Integer), `function` (building type: Integer), and `degree` (attractiveness of building: Double) fields.
 - `buildingUnits`: They are a unit in a building such as a restaurant and an apartment unit. They are a point object.
 - `walkways`: It is a spatial network consisting of roads represented as a polyline. The network should be a connected graph.
 
 Note that multi geometry type such as multipoint and multipolygons are not supported. In order to load different maps, you have two options.
-- Copy maps into `src/main/resource/campus_data/`. 
+- Copy maps into [src/main/resource/campus_data/](src/main/resource/campus_data/).
 - Set the location of maps in the resources directory with parameter `maps`. For instance, you can load the GMU campus maps by setting `maps` configuration as follows.
 
 ```
