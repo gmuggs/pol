@@ -1,0 +1,1 @@
+java -Dlog4j2.configurationFactory=edu.gmu.mason.vanilla.log.CustomConfigurationFactory -Dlog.rootDirectory=logs -Dsimulation.test=all -jar ../target/vanilla-0.1-jar-with-dependencies.jar -configuration parameters.properties -until 8640

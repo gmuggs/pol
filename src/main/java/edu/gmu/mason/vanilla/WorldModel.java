@@ -210,8 +210,8 @@ public class WorldModel extends SimState {
 		this.params = params;
 		timeUtil.addEventTime(SimulationEvent.SimulationStart, new DateTime());
 		simulationSeed = seed;
-		spatialNetwork.loadMapLayers(params.maps + "/walkways.shp",
-				params.maps + "/buildings.shp", params.maps + "/buildingUnits.shp");
+		spatialNetwork.loadMapLayers(params.maps, "walkways.shp",
+				"buildings.shp", "buildingUnits.shp");
 		initPlaces();
 		GeoUtils.alignMBRs(spatialNetwork.getAllLayers());
 		initVisualGraph();

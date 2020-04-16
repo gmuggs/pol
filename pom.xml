@@ -8,6 +8,10 @@
 	<build>
 		<plugins>
 			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+			</plugin>
+			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>

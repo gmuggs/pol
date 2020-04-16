@@ -68,15 +68,14 @@ public class SpatialNetwork implements java.io.Serializable {
 	/*
 	 * If running from jar extract the resources from JAR
 	 */
-	private void extractResourcesFromJar(URL codeBase, String path)
+	private void extractResourcesFromJar(URL codeBase, String path, String maps)
 			throws Exception {
-		createDirectories(path);
-		createGraphFiles(path);
+		createDirectories(path, maps);
 		java.util.jar.JarInputStream jin = new java.util.jar.JarInputStream(
 				codeBase.openStream());
 		ZipEntry entry;
 		while ((entry = jin.getNextEntry()) != null) {
-			if ((entry.getName().startsWith("campus_data") || entry.getName()
+			if ((entry.getName().startsWith(maps) || entry.getName()
 					.startsWith("stylesheet")) && !entry.isDirectory()) {
 				System.out.println("Entry: " + entry.getName());
 				ExportResource(path, "/" + entry.getName());
@@ -85,25 +84,10 @@ public class SpatialNetwork implements java.io.Serializable {
 	}
 
 	/*
-	 * Create the family and work graphs files
-	 */
-	private void createGraphFiles(String path) {
-		String[] files = { "FriendFamilyGraph.dgs", "WorkGraph.dgs" };
-		try {
-			for (int i = 0; i < files.length; i++) {
-				FileOutputStream out = new FileOutputStream(path + "/target/"
-						+ files[i]);
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
-
-	/*
 	 * Create resource directories if doesn't exists
 	 */
-	private void createDirectories(String path) {
-		String[] folders = { "campus_data", "stylesheet", "target" };
+	private void createDirectories(String path, String maps) {
+		String[] folders = { maps, "stylesheet", "target" };
 		for (int i = 0; i < folders.length; i++) {
 			File file = new File(path + "/" + folders[i]);
 			if (!file.exists()) {
@@ -144,7 +128,7 @@ public class SpatialNetwork implements java.io.Serializable {
 	}
 
 	// Movement/Geography-related methods
-	public void loadMapLayers(String walkwayShapefile,
+	public void loadMapLayers(String directory, String walkwayShapefile,
 			String buildingShapefile, String buildingUnitShapefile)
 					throws IOException, Exception {
 		URL codeBase = WorldModel.class.getProtectionDomain().getCodeSource()
@@ -153,34 +137,34 @@ public class SpatialNetwork implements java.io.Serializable {
 		if (codeBase.getPath().endsWith(".jar")) {
 
 			Path currentRelativePath = Paths.get("");
-			String path = currentRelativePath.toAbsolutePath().toString();
+			String base = currentRelativePath.toAbsolutePath().toString();
 
-			extractResourcesFromJar(codeBase, path);
+			extractResourcesFromJar(codeBase, base, directory);
 			// walkway map
-			String walkwayPath = path + "/" + walkwayShapefile;
+			String walkwayPath = base + "/" + directory + "/" + walkwayShapefile;
 			URL geometry = Paths.get(walkwayPath).toUri().toURL();
 			System.out.println(geometry);
 			ShapeFileImporter.read(geometry, walkwayLayer);
 
-			String buildingPath = path + "/" + buildingShapefile;
+			String buildingPath = base + "/" + directory + "/" + buildingShapefile;
 			geometry = Paths.get(buildingPath).toUri().toURL();
 			System.out.println(geometry);
 			ShapeFileImporter.read(geometry, buildingLayer);
 
-			String buildingUnitPath = path + "/" + buildingUnitShapefile;
+			String buildingUnitPath = base + "/" + directory + "/" + buildingUnitShapefile;
 			geometry = Paths.get(buildingUnitPath).toUri().toURL();
 			System.out.println(geometry);
 			ShapeFileImporter.read(geometry, buildingUnitLayer);
 
 		} else {
 			// walkway map
-			URL geometry = WorldModel.class.getResource("/" + walkwayShapefile);
+			URL geometry = WorldModel.class.getResource("/" + directory + "/" + walkwayShapefile);
 			ShapeFileImporter.read(geometry, walkwayLayer);
 
-			geometry = WorldModel.class.getResource("/" + buildingShapefile);
+			geometry = WorldModel.class.getResource("/" + directory + "/" + buildingShapefile);
 			ShapeFileImporter.read(geometry, buildingLayer);
 
-			geometry = WorldModel.class.getResource("/" + buildingUnitShapefile);
+			geometry = WorldModel.class.getResource("/" + directory + "/" + buildingUnitShapefile);
 			ShapeFileImporter.read(geometry, buildingUnitLayer);
 
 		}

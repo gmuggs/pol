@@ -35,7 +35,7 @@ mvn install:install-file -Dfile=src/main/resources/libs/mason-tools-1.0.jar -Dgr
 You can create a single (executable) jar file by using the following command.
 
 ```
-mvn org.apache.maven.plugins:maven-compiler-plugin:3.1:compile org.apache.maven.plugins:maven-assembly-plugin:3.1.0:single
+mvn org.apache.maven.plugins:maven-resources-plugin:2.6:resources org.apache.maven.plugins:maven-compiler-plugin:3.1:compile org.apache.maven.plugins:maven-assembly-plugin:3.1.0:single
 ```
 
 It will generate `vanilla-0.1-jar-with-dependencies.jar` in directory `target`. It will include all dependencies.
@@ -90,10 +90,12 @@ The following command was a complete example that uses all configurations.
 java -Dlog4j2.configurationFactory=edu.gmu.mason.vanilla.log.CustomConfigurationFactory -Dlog.rootDirectory=logs -Dsimulation.test=all -jar vanilla-0.1-jar-with-dependencies.jar -configuration parameters.properties -until 8640
 ```
 
+Examples of configurations are found in [examples/](examples/).
+
 
 # Load maps
 
-Default maps are located in `src/main/resource/campus_data/`. The current version of this project includes four maps (i.e., `gmu_campus`, `french_quarter`, `virtual_city(large)`, `virtual_city(small)`) complaint with simulation, which requires the following three ESRI shapefiles: 
+Default maps are located in `src/main/resource/campus_data/`. The current version of this project includes four maps (i.e., `gmu_campus`, `french_quarter`, `virtual_city_large`, `virtual_city_small`) complaint with simulation, which requires the following three ESRI shapefiles: 
 - `buildings`: They represent 2D polygonal footprints of buildings. It should include `neighbor` (neighborhood id: Integer), `id` (building id: Integer), `function` (building type: Integer), and `degree` (attractiveness of building: Double) fields.
 - `buildingUnits`: They are a unit in a building such as a restaurant and an apartment unit. They are a point object.
 - `walkways`: It is a spatial network consisting of roads represented as a polyline. The network should be a connected graph.
