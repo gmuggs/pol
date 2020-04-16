@@ -12,12 +12,12 @@ The framework utilizes and extends the MASON (Multi-Agent Simulation of Neighbor
 
 
 The structure of the project and its summary are described as follows:
-- [src/edu/gmu/mason/vanilla](src/edu/gmu/mason/vanilla): Core models including agents and needs
-- [src/edu/gmu/mason/vanilla/db](src/edu/gmu/mason/vanilla/db): Classes related to schema
-- [src/edu/gmu/mason/vanilla/environment](src/edu/gmu/mason/vanilla/environment): Environments such as a building and a building unit
-- [src/edu/gmu/mason/vanilla/gui](src/edu/gmu/mason/vanilla/gui): Utilities related to GUI
-- [src/edu/gmu/mason/vanilla/log](src/edu/gmu/mason/vanilla/log): Classes related to the logging system used to generate data
-- [src/edu/gmu/mason/vanilla/utils](src/edu/gmu/mason/vanilla/utils): Other utilities
+- [edu/gmu/mason/vanilla](src/main/java/edu/gmu/mason/vanilla): Core models including agents and needs
+- [edu/gmu/mason/vanilla/db](src/main/java/edu/gmu/mason/vanilla/db): Classes related to schema
+- [edu/gmu/mason/vanilla/environment](src/main/java/edu/gmu/mason/vanilla/environment): Environments such as a building and a building unit
+- [edu/gmu/mason/vanilla/gui](src/main/java/edu/gmu/mason/vanilla/gui): Utilities related to GUI
+- [edu/gmu/mason/vanilla/log](src/main/java/edu/gmu/mason/vanilla/log): Classes related to the logging system used to generate data
+- [edu/gmu/mason/vanilla/utils](src/main/java/edu/gmu/mason/vanilla/utils): Other utilities
 
 
 ## How to compile and build a jar file
@@ -45,7 +45,7 @@ It will generate `vanilla-0.1-jar-with-dependencies.jar` in directory `target`. 
 
 ## How to run a simulation
 
-There are two ways to run a simulation: (1) GUI and (2) headless. For the GUI version, run the main method in `src/edu/gmu/mason/vanilla/WorldModelUI.java`. For the headless version, invoke the main method in `src/edu/gmu/mason/vanilla/WorldModel.java` with appropriate arguments. You can download [vanilla-0.1-jar-with-dependencies.jar](https://github.com/gmuggs/pol/releases).
+There are two ways to run a simulation: (1) GUI and (2) headless. For the GUI version, run the main method in `src/main/java/edu/gmu/mason/vanilla/WorldModelUI.java`. For the headless version, invoke the main method in `src/main/java/edu/gmu/mason/vanilla/WorldModel.java` with appropriate arguments. You can download [vanilla-0.1-jar-with-dependencies.jar](https://github.com/gmuggs/pol/releases).
 
 
 ```
@@ -99,13 +99,13 @@ Examples of configurations are found in [examples/](examples/).
 
 ## Load maps
 
-Default maps are located in [src/main/resource/campus_data/](src/main/resource/campus_data/). The current version of this project includes four maps (i.e., [gmu_campus](src/main/resource/gmu_campus), [french_quarter](src/main/resource/french_quarter), [virtual_city_large](src/main/resource/virtual_city_large), [virtual_city_small](src/main/resource/virtual_city_small)) complaint with simulation, which requires the following three ESRI shapefiles:
+Default maps are located in [src/main/resources/campus_data/](src/main/resources/campus_data/). The current version of this project includes four maps (i.e., [gmu_campus](src/main/resources/gmu_campus), [french_quarter](src/main/resources/french_quarter), [virtual_city_large](src/main/resources/virtual_city_large), [virtual_city_small](src/main/resources/virtual_city_small)) complaint with simulation, which requires the following three ESRI shapefiles:
 - `buildings`: They represent 2D polygonal footprints of buildings. It should include `neighbor` (neighborhood id: Integer), `id` (building id: Integer), `function` (building type: Integer), and `degree` (attractiveness of building: Double) fields.
 - `buildingUnits`: They are a unit in a building such as a restaurant and an apartment unit. They are a point object.
 - `walkways`: It is a spatial network consisting of roads represented as a polyline. The network should be a connected graph.
 
 Note that multi geometry type such as multipoint and multipolygons are not supported. In order to load different maps, you have two options.
-- Copy maps into [src/main/resource/campus_data/](src/main/resource/campus_data/).
+- Copy maps into [src/main/resources/campus_data/](src/main/resources/campus_data/).
 - Set the location of maps in the resources directory with parameter `maps`. For instance, you can load the GMU campus maps by setting `maps` configuration as follows.
 
 ```
